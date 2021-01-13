@@ -38,6 +38,7 @@ namespace MarvelCards.Views
         private float _realNamePosY;
         private float _realNameOffsetY;
         private float _heroNameOffsetY;
+        private Command _learnMoreCommand;
 
         public HeroCard()
         {
@@ -52,8 +53,10 @@ namespace MarvelCards.Views
             {
                 _typeface = DependencyService.Get<IFontAssetHelper>().GetSkiaTypefaceFromAssetFont("MontserratAlternates-Bold.ttf");
             }
-
         }
+
+        public Command LearnMoreCommand
+            => _learnMoreCommand ?? (_learnMoreCommand = new Command(() => LearnMoreTapGestureRecognizer_Tapped(this, EventArgs.Empty)));
 
         protected override void OnBindingContextChanged()
         {

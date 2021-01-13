@@ -11,7 +11,9 @@
     ios:Page.PreferredStatusBarUpdateAnimation="Fade"
     ios:Page.PrefersHomeIndicatorAutoHidden="true"
     ios:Page.PrefersStatusBarHidden="True"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    x:Name="Root"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
 
     <Grid>
         <cards:CardsView
@@ -34,16 +36,19 @@
             Text="movies"
             VerticalOptions="Start" />
         <Image
+            xct:TouchEffect.PressedRotation="360"
+            xct:TouchEffect.PressedScale="2"
+            xct:TouchEffect.AnimationDuration="200"
+            xct:TouchEffect.NativeAnimation="True"
+            xct:TouchEffect.NativeAnimationRadius="10"
+            xct:TouchEffect.Command="{Binding BackCommand, Source={x:Reference Root}}"
+
             x:Name="BackArrow"
             Margin="{OnPlatform iOS='40,33,0,0',
                                 Default='40,15,0,0'}"
             HorizontalOptions="Start"
             Source="back_arrow"
-            VerticalOptions="Start">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer Tapped="BackArrowTapGestureRecognizer_Tapped" />
-            </Image.GestureRecognizers>
-        </Image>
+            VerticalOptions="Start" />
 
     </Grid>
 

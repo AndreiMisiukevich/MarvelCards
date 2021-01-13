@@ -16,12 +16,17 @@ namespace MarvelCards
     {
         private double _heroImageTranslationY = 50;
         private double _movementFactor = 100;
+        private Command _backCommand;
 
         public MainPage()
         {
             InitializeComponent();
             this.BindingContext = new HeroCardsViewModel();
         }
+
+        public Command BackCommand
+            => _backCommand ?? (_backCommand = new Command(() => BackArrowTapGestureRecognizer_Tapped(this, EventArgs.Empty)));
+
 
         protected override void OnAppearing()
         {

@@ -7,7 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    x:Name="Root"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
 
     <Grid>
         <skia:SKCanvasView
@@ -17,6 +19,10 @@
             VerticalOptions="Fill" />
 
         <Image
+            xct:TouchEffect.PressedOpacity=".6"
+            xct:TouchEffect.LongPressDuration="2000"
+            xct:TouchEffect.LongPressCommand="{Binding LearnMoreCommand, Source={x:Reference Root}}"
+
             x:Name="HeroImage"
             HeightRequest="400"
             Source="{Binding Image}"
@@ -25,16 +31,18 @@
             WidthRequest="400" />
 
         <Label
+            xct:TouchEffect.PressedScale="1.2"
+            xct:TouchEffect.PressedOpacity=".8"
+            xct:TouchEffect.AnimationDuration="500"
+            xct:TouchEffect.PulseCount="2"
+            xct:TouchEffect.Command="{Binding LearnMoreCommand, Source={x:Reference Root}}"
+
             x:Name="LearnMoreLabel"
             Margin="40,580,0,0"
             HorizontalOptions="Start"
             Style="{StaticResource LearnMore}"
             Text="learn more ⟶"
-            VerticalOptions="Start">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Tapped="LearnMoreTapGestureRecognizer_Tapped" />
-            </Label.GestureRecognizers>
-        </Label>
+            VerticalOptions="Start" />
 
         <Image
             x:Name="MarvelLogoImage"
